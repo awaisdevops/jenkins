@@ -10,8 +10,6 @@ The pipeline consists of the following steps:
 2. **Build Docker Image**: Builds a Docker image of the application and pushes it to Docker Hub.
 3. **Deploy Application**: Placeholder for deploying the application.
 
-## Files
-
 ### `script.groovy`
 
 The Groovy script contains the logic for building the application, creating the Docker image, and deploying the application.
