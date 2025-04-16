@@ -42,23 +42,7 @@ To create a new remote repository for Jenkins Shared Library:
 1. Create a new Git repository for your shared library.
 2. Store the `jenkins-shared-library.yaml` configuration to define your Jenkins environment.
 
-### `jenkins-shared-library.yaml`
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<module type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-    </content>
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
-  </component>
-</module>
-```
-
-## Example Groovy Scripts
+## Groovy Scripts
 
 Below are the key Groovy functions used in the `vars/` folder of your shared library.
 
