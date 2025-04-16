@@ -191,6 +191,91 @@ Once configured, the library can be loaded using the `@Library` annotation in Je
 
 > **Important**: Be careful with the versioning of your shared library. It is best to pin it to a specific branch, commit hash, or tag to ensure stability. Avoid using the `master` branch in production.
 
+## Jenkinsfile
+
+Below is our jenkinsfile using shared library in it for various stages:
+
+```groovy
+#!/usr/bin/env groovy
+
+# Load the shared library from the repository
+@Library ('jenkins-shared-library')  # Load the 'jenkins-shared-library' into this Jenkins pipeline
+
+# Define a global variable 'gv' that will be used later
+def gv
+
+# Define the pipeline block
+pipeline {
+    agent any  # Use any available agent for this pipeline
+    tools {
+        maven 'maven'  # Define the Maven tool for use in the pipeline
+    }
+    environment {
+        IMAGE_NAME = 'awaisakram11199/demo-app:jma444'  # Define a custom environment variable for the Docker image name
+    }
+
+    # Define the stages of the pipeline
+    stages {
+
+        # Stage 1: Initialization of the script
+        stage('Init Script') {
+            steps {
+                script {
+                    # Load the external script 'script.groovy' into the 'gv' variable
+                    gv = load "script.groovy"
+                }
+            }
+        }
+
+        # Stage 2: Build the application
+        stage('Build App') {
+            steps {
+                script {
+                    # Call the 'buildJar' function from the shared library to build the app
+                    buildJar()
+                }
+            }
+        }
+
+        # Stage 3: Build Docker image and push it to Docker registry
+        stage('Build and Push Image') {
+            steps {
+                script {
+                    # Call the 'buildImage' function to build the Docker image
+                    buildImage (env.IMAGE_NAME)
+                    # Call the 'dockerLogin' function to log into Docker registry
+                    dockerLogin()
+                    # Call the 'dockerPush' function to push the image to the Docker registry
+                    dockerPush (env.IMAGE_NAME)
+                }
+            }
+        }
+
+        # Stage 4: Deploy the image
+        stage('Deploy') {
+            steps {
+                script {
+                    # Call the 'deployImage' method from the loaded script (gv) to deploy the image
+                    gv.deployImage()
+                }
+            }
+        }
+    }
+
+    # Define actions to take after the pipeline has completed
+    post {
+        success {
+            # Print a success message if the deployment was successful
+            echo 'Deployment completed successfully!'
+        }
+        failure {
+            # Print a failure message if the deployment failed
+            echo 'Deployment failed.'
+        }
+    }
+}
+
+
 ## Benefits of Using Shared Libraries
 
 - **Efficiency**: Reduces redundancy by allowing code reuse across different projects.
