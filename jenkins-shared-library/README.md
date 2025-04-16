@@ -175,7 +175,6 @@ Once configured, the library can be loaded using the `@Library` annotation in Je
 
 > **Important**: Be careful with the versioning of your shared library. It is best to pin it to a specific branch, commit hash, or tag to ensure stability. Avoid using the `master` branch in production.
 
-```
 ## Jenkinsfile
 
 Below is our jenkinsfile using shared library in it for various stages:
@@ -261,7 +260,6 @@ pipeline {
 }
 ```
 
-```
 ## Benefits of Using Shared Libraries
 
 - **Efficiency**: Reduces redundancy by allowing code reuse across different projects.
