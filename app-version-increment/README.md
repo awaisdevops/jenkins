@@ -2,6 +2,22 @@
 
 This repository explains how to configure a Jenkins pipeline to automatically increment the Maven application version, build a Docker image, deploy to EC2, and commit the version change back to the Git repository.
 
+### Technologies Used
+- Jenkins
+- Docker
+- GitLab / GitHub
+- Git
+- Java
+- Maven
+
+### Project Description
+- Configure CI step: Increment patch version
+- Configure CI step: Build Java application and clean old artifacts
+- Configure CI step: Build Image with dynamic Docker Image Tag
+- Configure CI step: Push Image to private DockerHub repository
+- Configure CI step: Commit version update of Jenkins back to Git repository
+- Configure Jenkins pipeline to not trigger automatically on CI build commit to avoid commit loop
+
 ## Increment Application Version Locally
 
 How versioning happens automatically? Every build tool or package manager has its own plugin for automatic version increment. When used, it reads the code and finds the current version of the application and bumps up the version as directed by the developer using the plugin.
