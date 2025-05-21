@@ -2,6 +2,20 @@
 
 This guide explains how to automatically trigger a Jenkins Multibranch Pipeline job from GitLab using webhooks.
 
+### Technologies Used
+- Jenkins
+- GitLab / GitHub
+- Git
+- Docker
+- Java
+- Maven
+
+### Project Description
+- Install GitLab / GitHub Plugin in Jenkins
+- Configure GitLab access token and connection to Jenkins in GitLab project settings
+- Configure GitHub webhook and connection to Jenkins in GitHub project settings
+- Configure Jenkins to trigger the CI pipeline, whenever a change is pushed to GitLab / GitHub
+
 ---
 
 ## 1. Jenkins Server Configuration
